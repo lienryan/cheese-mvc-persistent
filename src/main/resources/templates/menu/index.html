@@ -2,20 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<h1 th:text="${title}">Default Title</h1>
+
 
 <nav th:replace="fragments :: navigation"></nav>
 
+<h1 class="jumbotron text-center" th:text="${title}">Default Title</h1>
+
 <p th:unless="${menus.size()}"><i>No menus yet</i></p>
 
-<ul>
-    <li th:each="menu : ${menus}">
+<ul class="list-group">
+    <li class="list-group-item" th:each="menu : ${menus}">
         <a th:href=" '/menu/view/' + ${menu.id}" th:text="${menu.name}"></a>
 
     </li>
 </ul>
 
-<p><a href="/menu/add">Add Menu</a></p>
+<p><a href="/menu/add" class="btn btn-primary active">Add Menu</a></p>
 
 </body>
 </html>

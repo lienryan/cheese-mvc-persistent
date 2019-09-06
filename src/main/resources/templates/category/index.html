@@ -4,18 +4,20 @@
 
 <body class="container">
 
-<h1 th:text="${title}">Default Title</h1>
+
 
 <nav th:replace="fragments :: navigation"></nav>
 
+<h1 class="jumbotron text-center" th:text="${title}">Default Title</h1>
 
 <p th:unless="${categories} and ${categories.size()}">No categories yet</p>
 
-<ul  th:each="category : ${categories}">
-    <li th:text="${category.name}" ></li>
+
+<ul class="list-group" th:each="category : ${categories}">
+    <li class="list-group-item" th:text="${category.name}" ></li>
 </ul>
 
-<p><a href="/category/add">Add Category</a></p>
+<p><a href="/category/add" class="btn btn-primary active">Add Category</a></p>
 
 
 

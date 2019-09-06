@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
@@ -71,10 +68,9 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveCheeseForm(@RequestParam int[] ids) {
-
-        for (int id : ids) {
-            cheeseDao.delete(id);
+    public String processRemoveCheeseForm(@RequestParam int[] cheeseIds) {
+        for (int cheeseId : cheeseIds) {
+            cheeseDao.delete(cheeseId);
         }
 
         return "redirect:";
@@ -87,6 +83,29 @@ public class CheeseController {
         model.addAttribute("cheeses", cheeses);
         model.addAttribute("title", "Cheeses in Category: " + cat.getName());
         return "cheese/index";
+    }
+
+    @RequestMapping(value = "edit/{cheeseId}",method = RequestMethod.GET)
+    public String displayEditForm(Model model, @PathVariable int cheeseId) {
+        model.addAttribute("cheese", cheeseDao.findOne(cheeseId));
+        model.addAttribute("categories", categoryDao.findAll());
+        return "cheese/edit";
+    }
+
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String processEditForm(@PathVariable  int cheeseId, @PathVariable String name,
+                                  @PathVariable String description, @PathVariable int categoryId) {
+
+        Cheese c = cheeseDao.findOne(cheeseId);
+        Category cat = categoryDao.findOne(categoryId);
+
+        c.setName(name);
+        c.setDescription(description);
+        c.setCategory(cat);
+
+        cheeseDao.save(c);
+
+        return "redirect:";
     }
 
 }

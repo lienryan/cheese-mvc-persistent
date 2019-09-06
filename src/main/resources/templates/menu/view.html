@@ -2,12 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<h1 th:text="${title}">Default Title</h1>
+
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<ul>
-    <li th:each="cheese: ${cheeses}" th:text="${cheese.name}">
+<h2  class="jumbotron text-center" th:text="${title}">Default Title</h2>
+<ul class="list-group">
+    <li class="list-group-item" th:each="cheese: ${cheeses}" th:text="${cheese.name}">
 
     </li>
 </ul>
