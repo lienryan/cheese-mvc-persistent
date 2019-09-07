@@ -12,12 +12,12 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default" th:fragment="navigation">
-
-
-        <a class="nav-item" href="/cheese">Home</a> |
-        <a class="nav-item" href="/category">Categories</a> |
-        <a class="nav-item" href="/menu">Menu</a>
+<nav th:fragment="navigation">
+    <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="/cheese">Home</a></li>
+        <li class="nav-item"> <a href="/category">Categories</a> </li>
+        <li class="nav-item"> <a href="/menu">Menu</a> </li>
+    </ul>
 
 </nav>
 
