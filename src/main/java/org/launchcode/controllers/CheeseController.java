@@ -93,8 +93,8 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public String processEditForm(@PathVariable  int cheeseId, @PathVariable String name,
-                                  @PathVariable String description, @PathVariable int categoryId) {
+    public String processEditForm( @RequestParam int cheeseId, @RequestParam  String name,
+                                  @RequestParam String description, @RequestParam int categoryId) {
 
         Cheese c = cheeseDao.findOne(cheeseId);
         Category cat = categoryDao.findOne(categoryId);
